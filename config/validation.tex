@@ -1,0 +1,34 @@
+% Validasi konfigurasi yang dijalankan sebelum dokumen dirender.
+\makeatletter
+\newcommand{\PENSRequireValue}[2]{%
+  \ifstrempty{#1}{%
+    \PackageError{pens-paper-latex}{Variabel #2 belum diisi}%
+      {Isi #2 di config/variables.tex sebelum mengompilasi dokumen.}%
+  }{}%
+}
+\newcommand{\PENSWarnPlaceholder}[2]{%
+  \ifdefstring{#1}{#2}{%
+    \PackageWarningNoLine{pens-paper-latex}{Variabel \string#1 masih menggunakan nilai contoh `#2'}%
+  }{}%
+}
+\newcommand{\PENSValidateConfiguration}{%
+  \PENSRequireValue{\NamaMahasiswa}{\string\NamaMahasiswa}%
+  \PENSRequireValue{\NRP}{\string\NRP}%
+  \PENSRequireValue{\JudulPA}{\string\JudulPA}%
+  \PENSRequireValue{\NamaProdi}{\string\NamaProdi}%
+  \PENSRequireValue{\NamaDepartemen}{\string\NamaDepartemen}%
+  \PENSRequireValue{\NamaInstitusi}{\string\NamaInstitusi}%
+  \PENSRequireValue{\TahunLulus}{\string\TahunLulus}%
+  \ifcsvoid{NamaPembimbingTiga}{}{\PENSRequireValue{\NIPPembimbingTiga}{\string\NIPPembimbingTiga}}%
+  \IfFileExists{\LogoPENSPath}{}{%
+    \PackageError{pens-paper-latex}{Aset logo tidak ditemukan: \LogoPENSPath}{Periksa path aset di config/variables.tex.}%
+  }%
+  \ifEnableWatermark
+    \IfFileExists{\WatermarkPENSPath}{}{%
+      \PackageError{pens-paper-latex}{Aset watermark tidak ditemukan: \WatermarkPENSPath}{Periksa path aset di config/variables.tex.}%
+    }%
+  \fi
+  \PENSWarnPlaceholder{\NamaMahasiswa}{Nama Mahasiswa}%
+  \PENSWarnPlaceholder{\JudulPA}{Judul Proyek Akhir}%
+}
+\makeatother

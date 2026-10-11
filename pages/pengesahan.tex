@@ -1,0 +1,95 @@
+%============================================================
+% HALAMAN PENGESAHAN
+% Halaman ini selalu dicetak tanpa watermark.
+%============================================================
+\cleardoublepage
+\pagestyle{empty} % Memastikan seluruh halaman pengesahan tanpa nomor/header
+
+\DisableDocumentWatermark
+
+\begin{center}
+  {\fontsize{20}{0}\bfseries HALAMAN PENGESAHAN\par}
+  \vspace{0.8cm}
+
+  \begin{minipage}{1\textwidth}
+    \centering
+    \fontsize{18}{16}\bfseries\selectfont\MakeUppercase{\JudulPA}
+  \end{minipage}
+  \par
+
+  \vspace{0.6cm}
+
+  {\fontsize{14}{17}\selectfont Oleh:\par}
+  \vspace{0.1cm}
+
+  {\fontsize{14}{17}\bfseries
+    \NamaMahasiswa\par
+  NRP. \NRP\par}
+
+  \vspace{0.6cm}
+
+  \begin{spacing}{1}
+    {\fontsize{14}{17}\bfseries
+      Proyek Akhir ini digunakan sebagai salah satu syarat untuk\\
+      memperoleh Gelar \GelarLulus\\
+      di \NamaInstitusi\\
+    \TahunLulus\par}
+  \end{spacing}
+\end{center}
+
+\vspace{0.2cm}
+\begin{center}
+  {\fontsize{14}{17}\bfseries Disetujui oleh:}
+\end{center}
+\vspace{0.2cm}
+
+% Daftar pembimbing dan penguji beserta kolom tanda tangan
+\noindent
+{\fontsize{14}{17}\selectfont
+  \begin{tabular}{@{}l c l c@{}}
+    Pembimbing 1 & : & \NamaPembimbingSatu   & (\hspace{2.5cm}) \\
+    &   & NIP. \NIPPembimbingSatu & \\[3pt]
+    \ifcsvoid{NamaPembimbingDua}{}{%
+      Pembimbing 2 & : & \NamaPembimbingDua & (\hspace{2.5cm}) \\
+      & & \ifcsvoid{NIPPembimbingDua}{}{NIP. \NIPPembimbingDua} & \\[3pt]
+    }
+
+    % Baris kondisional Pembimbing 3 (Akademik)
+    \ifcsvoid{NamaPembimbingTiga}{}{%
+      Pembimbing 3 & : & \NamaPembimbingTiga   & (\hspace{2.5cm}) \\
+      & & \ifcsvoid{NIPPembimbingTiga}{}{NIP. \NIPPembimbingTiga} & \\[3pt]
+    }
+
+    % Baris kondisional Pembimbing Industri
+    \ifcsvoid{NamaPembimbingIndustri}{}{%
+      Pembimbing Industri & : & \NamaPembimbingIndustri & (\hspace{2.5cm}) \\
+      & & \IdentitasPembimbingIndustri & \\[3pt]
+    }
+
+    Penguji 1    & : & \NamaPengujiSatu     & (\hspace{2.5cm}) \\
+    &   & NIP. \NIPPengujiSatu   & \\[3pt]
+    Penguji 2    & : & \NamaPengujiDua      & (\hspace{2.5cm}) \\
+    &   & NIP. \NIPPengujiDua    & \\
+  \end{tabular}
+}
+
+\vspace{0.3cm}
+
+% 2. Blok Mengetahui dibungkus dalam minipage
+%    Jika ruang tidak cukup, SELURUH kotak ini akan pindah ke halaman 2.
+\noindent
+\begin{minipage}{\textwidth}
+  \begin{center}
+    {\fontsize{14}{17}\bfseries Mengetahui,}\par
+    {\fontsize{14}{17}\selectfont
+      Ketua Program Studi Sarjana Terapan \NamaProdi\par
+    \NamaInstitusi}\par
+    \vspace{1.5cm}
+    {\fontsize{14}{17}\selectfont
+      \underline{\NamaKetuaProdi}\par
+    NIP. \NIPKetuaProdi\par}
+  \end{center}
+\end{minipage}
+
+% Paksa render halaman terakhir sebelum masuk ke bagian berikutnya.
+\clearpage

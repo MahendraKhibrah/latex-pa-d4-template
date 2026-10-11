@@ -1,0 +1,28 @@
+# Reproducible build and release output
+/build/
+/dist/
+
+# LaTeX products accidentally emitted outside build/
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.glg
+*.glo
+*.gls
+*.ist
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+
+# Editor and operating-system files
+*~
+*.swp
+.DS_Store
+Thumbs.db

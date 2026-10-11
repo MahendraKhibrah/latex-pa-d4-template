@@ -1,0 +1,56 @@
+% Opsi kompilasi template.
+% Ubah nilai true/false di bawah untuk memilih bagian yang disertakan.
+% Evaluation build dapat diaktifkan dari luar sebelum file ini dimuat dengan
+% mendefinisikan marker \EvaluationBuildtrue, misalnya:
+%   pdflatex "\def\EvaluationBuildtrue{}\input{main.tex}"
+
+\ifdefined\EvaluationBuildtrue
+  \let\PENSEvaluationBuildRequested\relax
+\fi
+\newif\ifEvaluationBuild
+\ifdefined\PENSEvaluationBuildRequested
+  \EvaluationBuildtrue
+\else
+  \EvaluationBuildfalse
+\fi
+
+\newif\ifIncludeCover                 \IncludeCovertrue
+\newif\ifIncludeTitlePage             \IncludeTitlePagetrue
+\newif\ifIncludeApprovalPage          \IncludeApprovalPagetrue
+\newif\ifIncludeOriginalityPage       \IncludeOriginalityPagetrue
+\newif\ifIncludeCopyrightPage         \IncludeCopyrightPagetrue
+\newif\ifIncludeIndonesianAbstract    \IncludeIndonesianAbstracttrue
+\newif\ifIncludeEnglishAbstract       \IncludeEnglishAbstracttrue
+\newif\ifIncludePreface               \IncludePrefacetrue
+\newif\ifIncludeTableOfContents       \IncludeTableOfContentstrue
+\newif\ifIncludeListOfFigures         \IncludeListOfFigurestrue
+\newif\ifIncludeListOfTables          \IncludeListOfTablestrue
+\newif\ifIncludeChapterOne            \IncludeChapterOnetrue
+\newif\ifIncludeChapterTwo            \IncludeChapterTwotrue
+\newif\ifIncludeChapterThree          \IncludeChapterThreetrue
+\newif\ifIncludeChapterFour           \IncludeChapterFourtrue
+\newif\ifIncludeChapterFive           \IncludeChapterFivetrue
+\newif\ifIncludeBibliography          \IncludeBibliographytrue
+\newif\ifIncludeAppendices            \IncludeAppendicestrue
+
+% Watermark dokumen. Jika aktif, watermark dimulai pada halaman preliminary
+% dan tetap aktif sampai akhir dokumen. Cover, halaman judul, dan pengesahan
+% selalu bebas watermark.
+\newif\ifEnableWatermark               \EnableWatermarkfalse
+
+% Mode evaluasi menghasilkan halaman judul dan seluruh bab inti saja.
+\ifEvaluationBuild
+  \IncludeCoverfalse
+  \IncludeTitlePagetrue
+  \IncludeApprovalPagefalse
+  \IncludeOriginalityPagefalse
+  \IncludeCopyrightPagefalse
+  \IncludeIndonesianAbstractfalse
+  \IncludeEnglishAbstractfalse
+  \IncludePrefacefalse
+  \IncludeTableOfContentsfalse
+  \IncludeListOfFiguresfalse
+  \IncludeListOfTablesfalse
+  \IncludeBibliographyfalse
+  \IncludeAppendicesfalse
+\fi

@@ -1,0 +1,72 @@
+% Template Proyek Akhir PENS — compile file ini dengan pdfLaTeX dan BibTeX.
+\documentclass[12pt,a4paper,twoside,openright,fleqn]{report}
+
+% Urutan penting: opsi harus dimuat sebelum konfigurasi lain.
+\input{config/options}
+\input{config/variables}
+\input{config/packages}
+\input{config/formatting}
+\input{config/validation}
+
+\begin{document}
+\PENSValidateConfiguration
+
+% Bagian awal tanpa nomor halaman.
+\ifIncludeCover\input{pages/cover}\fi
+\ifIncludeTitlePage\input{pages/halaman_judul}\fi
+\ifIncludeApprovalPage\input{pages/pengesahan}\fi
+
+% Preliminary pages. Watermark dimulai di sini bila diaktifkan.
+\ifEvaluationBuild\else
+  \EnableDocumentWatermark
+  \cleardoublepage
+  \pagestyle{fancy}
+  \pagenumbering{roman}
+  \setcounter{page}{1}
+  \onehalfspacing
+  \ifIncludeOriginalityPage\input{pages/orisinalitas}\fi
+  \ifIncludeCopyrightPage\input{pages/hak_cipta}\fi
+  \ifIncludeIndonesianAbstract\input{pages/abstrak}\fi
+  \ifIncludeEnglishAbstract\input{pages/abstract}\fi
+  \ifIncludePreface\input{pages/kata_pengantar}\fi
+
+  \ifIncludeTableOfContents
+    \cleardoublepage
+    \tableofcontents
+  \fi
+  \ifIncludeListOfFigures
+    \cleardoublepage
+    \begingroup\renewcommand*{\addvspace}[1]{}\listoffigures\endgroup
+    \addcontentsline{toc}{chapter}{DAFTAR GAMBAR}
+  \fi
+  \ifIncludeListOfTables
+    \cleardoublepage
+    \begingroup\renewcommand*{\addvspace}[1]{}\listoftables\endgroup
+    \addcontentsline{toc}{chapter}{DAFTAR TABEL}
+  \fi
+\fi
+
+% Isi utama. Dalam mode evaluasi, watermark baru diaktifkan di sini.
+\ifEvaluationBuild\EnableDocumentWatermark\fi
+\cleardoublepage
+\pagestyle{fancy}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\onehalfspacing
+\ifIncludeChapterOne\input{chapters/bab1}\fi
+\ifIncludeChapterTwo\input{chapters/bab2}\fi
+\ifIncludeChapterThree\input{chapters/bab3}\fi
+\ifIncludeChapterFour\input{chapters/bab4}\fi
+\ifIncludeChapterFive\input{chapters/bab5}\fi
+
+\ifIncludeBibliography
+  \cleardoublepage
+  \addcontentsline{toc}{chapter}{DAFTAR PUSTAKA}
+  \renewcommand{\bibname}{DAFTAR PUSTAKA}
+  \bibliographystyle{IEEEtranN}
+  \bibliography{references}
+\fi
+
+\ifIncludeAppendices\input{pages/lampiran}\fi
+\DisableDocumentWatermark
+\end{document}
